@@ -1,22 +1,33 @@
 package main;
 
 public class ResponseService {
+
+    private int inputValue;
+    private String inputString;
+
     public String getResponse(int input) {
-        String inputString = String.valueOf(input);
-        if (isFizzWord(input, inputString))
-        {
-            if (isBuzzWord(input, inputString)) return "FizzBuzz";
+        inputValue = input;
+        inputString = String.valueOf(input);
+        if (isFizzBuzzWord()){
+            return "FizzBuzz";
+        } else if (isFizzWord()){
             return "Fizz";
+        } else if (isBuzzWord()){
+            return "Buzz";
+        } else{
+            return inputString;
         }
-        if (isBuzzWord(input, inputString)) return "Buzz";
-        return inputString;
     }
 
-    private boolean isFizzWord(int input, String inputString) {
-        return input % 3 == 0 || inputString.contains("3");
+    private boolean isFizzWord() {
+        return inputValue % 3 == 0 || inputString.contains("3");
     }
 
-    private boolean isBuzzWord(int input, String inputString) {
-        return input % 5 == 0 || inputString.contains("5");
+    private boolean isBuzzWord() {
+        return inputValue % 5 == 0 || inputString.contains("5");
+    }
+
+    private boolean isFizzBuzzWord(){
+        return isFizzWord() && isBuzzWord();
     }
 }
